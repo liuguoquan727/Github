@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <TextView
+      android:id="@+id/search"
+      android:paddingLeft="15dp"
+      android:paddingRight="15dp"
+      android:layout_marginTop="10dp"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:gravity="center_vertical"
+      android:drawableRight="@drawable/ic_my_next"
+      android:background="@color/white"
+      android:foreground="?attr/selectableItemBackground"
+      android:text="Search"/>
+
+  <TextView
+      android:id="@+id/starred"
+      android:paddingLeft="15dp"
+      android:paddingRight="15dp"
+      android:layout_marginTop="10dp"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:gravity="center_vertical"
+      android:drawableRight="@drawable/ic_my_next"
+      android:background="@color/white"
+      android:foreground="?selectableItemBackground"
+      android:text="Starred"/>
+</LinearLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollable_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <android.support.design.widget.AppBarLayout
+      android:id="@+id/bar_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:elevation="0dp"
+      >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_collapseMode="parallax"
+        app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed"
+        >
+      <android.support.v7.widget.Toolbar
+          android:id="@+id/tool_bar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/toolBarSize"
+          android:background="@color/main_color_normal"
+          style="?attr/toolbarStyle"
+          />
+    </LinearLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/main_color_normal"
+        app:tabIndicatorColor="@color/white"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabTextColor="#D7D5D5"/>
+  </android.support.design.widget.AppBarLayout>
+
+  <android.support.v4.view.ViewPager
+      android:id="@+id/viewpager"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior"
+      />
+</android.support.design.widget.CoordinatorLayout>
