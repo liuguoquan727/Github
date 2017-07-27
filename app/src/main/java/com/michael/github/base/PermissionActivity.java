@@ -22,24 +22,23 @@ import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 /**
- * Description：增加权限的检查与申请
+ * Created by liuguoquan on 2017/7/27.
  */
+
 @RuntimePermissions
-public abstract class PermissionFragment<V extends AppBaseView, T extends AppBaseFragmentPresenter<V>>
-    extends AppBaseFragment<V, T> {
+public abstract class PermissionActivity<V extends AppBaseView, T extends AppBaseActivityPresenter<V>>
+    extends AppBaseActivity<V, T> {
 
   @Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
       @NonNull int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    PermissionFragmentPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
+    PermissionActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode,
         grantResults);
   }
 
-  //////////////////////////////
-  // 相机权限请求 start
-  //////////////////////////////
+  //相机权限请求
   public void showCameraWithCheck() {
-    PermissionFragmentPermissionsDispatcher.showCameraWithCheck(this);
+    PermissionActivityPermissionsDispatcher.showCameraWithCheck(this);
   }
 
   @NeedsPermission({ Manifest.permission.CAMERA }) public void showCamera() {
@@ -58,15 +57,10 @@ public abstract class PermissionFragment<V extends AppBaseView, T extends AppBas
   @OnNeverAskAgain({ Manifest.permission.CAMERA }) void showNeverAskForCamera() {
     showSettingDialog("拍照");
   }
-  //////////////////////////////
-  // 相机权限请求 end
-  //////////////////////////////
 
-  //////////////////////////////
-  // 媒体文件选择请求 start
-  //////////////////////////////
+  //媒体文件权限请求
   public void showMediaSelectWithCheck(Bundle bundle, int requestCode) {
-    PermissionFragmentPermissionsDispatcher.showMediaSelectWithCheck(this, bundle, requestCode);
+    PermissionActivityPermissionsDispatcher.showMediaSelectWithCheck(this, bundle, requestCode);
   }
 
   @NeedsPermission({ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE })
@@ -88,15 +82,10 @@ public abstract class PermissionFragment<V extends AppBaseView, T extends AppBas
   void showNeverAskForMediaSelect() {
     showSettingDialog("相机和存储");
   }
-  //////////////////////////////
-  // 媒体文件选择请求 end
-  //////////////////////////////
 
-  //////////////////////////////
-  // 存储权限请求 start
-  //////////////////////////////
+  //存储权限请求
   public void showWriteStorageWithCheck() {
-    PermissionFragmentPermissionsDispatcher.showWriteStorageWithCheck(this);
+    PermissionActivityPermissionsDispatcher.showWriteStorageWithCheck(this);
   }
 
   @NeedsPermission({ Manifest.permission.WRITE_EXTERNAL_STORAGE }) public void showWriteStorage() {
@@ -117,13 +106,10 @@ public abstract class PermissionFragment<V extends AppBaseView, T extends AppBas
   void showNeverAskForWriteStorage() {
     showSettingDialog("存储");
   }
-  //////////////////////////////
-  // 存储权限请求 end
-  //////////////////////////////
 
-  //读取电话权限
+  //电话权限
   public void showReadPhoneWithCheck() {
-    PermissionFragmentPermissionsDispatcher.showReadPhoneWithCheck(this);
+    PermissionActivityPermissionsDispatcher.showReadPhoneWithCheck(this);
   }
 
   @NeedsPermission({ Manifest.permission.READ_PHONE_STATE }) public void showReadPhone() {
@@ -145,7 +131,7 @@ public abstract class PermissionFragment<V extends AppBaseView, T extends AppBas
 
   protected void showSettingDialog(String feature) {
     String name = getString(R.string.app_name);
-    CenterDialog.create(getActivity(), "提示",
+    CenterDialog.create(this, "提示",
         String.format("在设置-应用-%s-权限中开启%s权限, 以正常使用%s功能", name, feature, name), "取消",
         new IDialog.OnClickListener() {
           @Override public void onClick(DialogPlus dialog, View view) {
@@ -156,12 +142,11 @@ public abstract class PermissionFragment<V extends AppBaseView, T extends AppBas
             dialog.dismiss();
             try {
               Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-              intent.setData(
-                  Uri.parse(String.format("package:%s", getActivity().getPackageName())));
-              getActivity().startActivity(intent);
+              intent.setData(Uri.parse(String.format("package:%s", getPackageName())));
+              startActivity(intent);
             } catch (Exception e) {
               Intent intent = new Intent(Settings.ACTION_APPLICATION_SETTINGS);
-              getActivity().startActivity(intent);
+              startActivity(intent);
             }
           }
         }).show();

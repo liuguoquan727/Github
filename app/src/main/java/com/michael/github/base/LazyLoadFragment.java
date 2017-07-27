@@ -5,7 +5,6 @@ import android.view.View;
 import com.mdroid.lib.core.base.Status;
 
 /**
- * Created by ouyangzn on 2016/10/25.<br/>
  * Description：fragment懒加载时继承的基类
  */
 public abstract class LazyLoadFragment<V extends AppBaseView, T extends AppBaseFragmentPresenter<V>>
