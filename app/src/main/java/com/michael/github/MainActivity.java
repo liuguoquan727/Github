@@ -72,7 +72,6 @@ public class MainActivity extends AppBaseActivity {
   @Override public void initView(Bundle savedInstanceState) {
     //mBottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
     mBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
     mTabManager = new TabManager(this, getSupportFragmentManager(), R.id.main_container);
     mTabManager.addTab(REPOSITORY, RepositoryFragment.class, null)
         .addTab(USER, UserFragment.class, null)
