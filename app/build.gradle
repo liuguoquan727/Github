@@ -40,7 +40,8 @@ dependencies {
 //  compile "com.mdroid.lib:glide-okhttp3:${GLIDE_OKHTTP3_VERSION}"
 //  compile "com.chargerlink.lib:ImagePick:${IMAGE_PICK_VERSION}"
 
-  compile 'com.github.liuguoquan727.library:core:1.0.5'
+  compile 'com.github.liuguoquan727.library:core:1.0.8'
+  compile 'com.github.liuguoquan727.library:ImagePick:1.0.8'
 
   compile "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
   annotationProcessor "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
